@@ -1,0 +1,40 @@
+body{
+  background-color: rgb(17, 30, 41);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.container{
+  background-color: rgb(115, 163, 198);
+}
+#head{
+  position: relative;
+  padding: 15px 0px;
+  letter-spacing: 10px;
+}
+.h6{
+  line-height: 150%;
+}
+#head::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50%;
+  transform: translatex(-50%);
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.48);
+}
+input{
+  background-color: #e6e6e651 !important;
+  border: none !important;
+}
+input::placeholder{
+  color: #0000007c !important;
+}
+.btn-theme{
+  background-color: #6C63FF ;
+  color: #fff;
+}
+.btn-theme:hover{
+  background-color: #5d57de;
+  color: #fff;
+}
