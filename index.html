@@ -10,7 +10,7 @@
     <title>Sign in && up</title>
   </head>
   <body>
-    <section class="py-5">
+    <section id="_1st" class="py-5 vh-100 d-flex align-items-center">
       <div class="container rounded-3 py-5 px-md-5 shadow-lg">
         <div class="row align-items-center justify-content-center gy-4">
           <div class="col-lg-7">
@@ -18,11 +18,12 @@
               <h2 id="head" class="fw-bold">Contact Us</h2>
               <p class="h6 py-3 w-75 mx-auto">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Voluptatibus qui
-                soluta beatae deleniti tempore totam.
+                Voluptatibus qui soluta beatae deleniti tempore totam.
               </p>
               <button id="signUpBtn" class="btn btn-theme me-3">Sign Up</button>
-              <button id="signInBtn" class="btn btn-outline-dark">Sign In</button>
+              <button id="signInBtn" class="btn btn-outline-dark">
+                Sign In
+              </button>
               <div id="signUp" class="row d-none w-75 mx-auto">
                 <div class="col-md-6">
                   <input
@@ -82,25 +83,43 @@
                   >
                 </div>
                 <div class="col-12 text-start mt-3">
-                  <button id="signUpSubmit" class="btn btn-theme w-100">Sign Up</button>
+                  <button id="signUpSubmit" class="btn btn-theme w-100">
+                    Sign Up
+                  </button>
                 </div>
               </div>
               <div id="signIN" class="row w-75 mx-auto">
-                <div id="message" class="col-12 d-none mt-4 p-2">
-                  
+                <div id="message" class="col-12 d-none mt-4 p-2"></div>
+                <div class="col-12">
+                  <input
+                    id="signInEmail"
+                    type="text"
+                    class="form-control mt-4 py-1"
+                    placeholder="Email"
+                  />
                 </div>
                 <div class="col-12">
-                  <input id="signInEmail" type="text" class="form-control mt-4 py-1" placeholder="Email" />
+                  <input
+                    id="passInput"
+                    type="password"
+                    placeholder="Password"
+                    class="form-control mt-4 py-1"
+                  />
+                </div>
+                <div class="col-12 mt-3 text-start d-flex">
+                  <input
+                    id="remember"
+                    type="checkbox"
+                    class="form-check me-2 d-inline"
+                  />
+                  <label for="remember" class="form-label m-0 p-0"
+                    >remember me ?</label
+                  >
                 </div>
                 <div class="col-12">
-                  <input id="passInput" type="password" placeholder=Password class="form-control mt-4 py-1">
-                </div>
-                <div class="col-12 mt-3 text-start d-flex ">
-                  <input id="remember" type="checkbox" class="form-check me-2 d-inline">
-                  <label for="remember" class="form-label m-0 p-0">remember me ?</label>
-                </div>
-                <div class="col-12">
-                  <button id="submit" class="btn btn-theme w-100 mt-3">Sign In</button>
+                  <button id="submit" class="btn btn-theme w-100 mt-3">
+                    Sign In
+                  </button>
                 </div>
               </div>
             </div>
@@ -112,6 +131,69 @@
                 class="w-100"
                 alt=""
               />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="_2s" class="vh-100">
+      <div class="overlay d-flex align-items-center">
+        <div class="container text-white bg-light p-0 rounded-3 shadow-lg">
+          <div class="overlay position-relative overflow-hidden p-5">
+            <div class="skew"></div>
+            <div class="row py-5">
+              <div class="col-md-8 position-relative">
+                <div class="inner">
+                  <div
+                    class="d-flex align-items-center justify-content-between"
+                  >
+                    <h2>
+                      <i class="fa-solid text-info me-2 fa-archway"></i
+                      >Listing<span class="text-info">Spark</span>
+                    </h2>
+                    <p class="p-0 m-0 me-3 lead">
+                      Support Hotline : +512 818-2252
+                    </p>
+                  </div>
+                  <h1 id="head_title" class="fw-bolder mt-5">
+                    Sell Your Home <br />
+                    On Your Terms
+                  </h1>
+                  <p class="lead fw-bold text-muted">
+                    We've created the smastest way to sell home <br />
+                    by creating the smartest way to pay
+                  </p>
+                  <h2 class="text-info">List. Market. Sell. 7$ A Day</h2>
+                </div>
+              </div>
+              <div class="col-md-3 offset-1 position-relative">
+                <h6>
+                  Create Your Free Account And Find What out What Everyone is
+                  Talking About
+                </h6>
+
+                <div class="row mt-5">
+                  <div class="col-12">
+                    <input id="fName_second" type="text" class="form-control bg-light py-2" placeholder="First Name">
+                  </div>
+                  <div class="col-12 mt-3">
+                    <input id="lName_second" type="text" class="form-control bg-light py-2" placeholder="Last Name">
+                  </div>
+                  <div class="col-12 mt-3">
+                    <input id="email_second" type="text" class="form-control bg-light py-2" placeholder="email">
+                  </div>
+                  <div class="col-12 mt-3">
+                    <button id="submit_second" class="btn btn-info px-4 py-2">Submit</button>
+                  </div>
+                  <div class="col-12">
+                    <label for="" class="form-label small mt-3">By Signing Up you accepted the terms ans coditions</label>
+                  </div>
+
+
+                </div>
+
+              </div>
             </div>
           </div>
         </div>

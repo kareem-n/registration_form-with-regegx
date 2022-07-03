@@ -13,7 +13,7 @@ let signupcheck = document.querySelector("#signupCheck");
 let signUpSubmit = document.querySelector("#signUpSubmit");
 let submit = document.querySelector("#submit");
 let message = document.querySelector("#message");
-let agree = document.querySelector('#agree') ; 
+let agree = document.querySelector("#agree");
 
 let submitBtn = document.querySelector("#submit");
 signInBtn.addEventListener("click", function () {
@@ -36,14 +36,14 @@ function nameRegex(text, input) {
   }
 }
 
-function emailRegex(text) {
+function emailRegex(text, ele) {
   let regex = /^.{0,100}@[a-zA-Z]{3,15}\.[a-z]{2,5}$/;
   if (regex.test(text) == true) {
-    email.classList.remove("is-invalid");
-    email.classList.add("is-valid");
+    ele.classList.remove("is-invalid");
+    ele.classList.add("is-valid");
   } else {
-    email.classList.remove("is-valid");
-    email.classList.add("is-invalid");
+    ele.classList.remove("is-valid");
+    ele.classList.add("is-invalid");
   }
 }
 
@@ -81,7 +81,7 @@ lastnameInput.addEventListener("keyup", function () {
 
 email.addEventListener("keyup", function () {
   let text = email.value;
-  emailRegex(text);
+  emailRegex(text, email);
 });
 
 pass.addEventListener("keyup", function () {
@@ -93,7 +93,7 @@ phoneInput.addEventListener("keyup", function () {
   let text = phoneInput.value;
   phoneRegex(text);
 });
-let cont = [firstnameInput, lastnameInput, email, pass, phoneInput];
+let cont = [];
 let users;
 
 if (localStorage.getItem("users") == null) {
@@ -102,6 +102,7 @@ if (localStorage.getItem("users") == null) {
   users = JSON.parse(localStorage.getItem("users"));
 }
 signUpSubmit.addEventListener("click", function () {
+  cont = [firstnameInput, lastnameInput, email, pass, phoneInput];
   let checker = false;
   for (let i = 0; i < cont.length; i++) {
     if (cont[i].classList.contains("is-valid") == true) {
@@ -133,7 +134,7 @@ function clearInputs() {
   email.value = "";
   pass.value = "";
   phoneInput.value = "";
-  agree.checked = false ; 
+  agree.checked = false;
   firstnameInput.classList.remove("is-valid");
   lastnameInput.classList.remove("is-valid");
   email.classList.remove("is-valid");
@@ -161,5 +162,41 @@ submit.addEventListener("click", function () {
       message.innerHTML = "Invalid Email or password";
       console.log(1);
     }
+  }
+});
+//  second form
+
+let fName = document.querySelector("#fName_second");
+let lname = document.querySelector("#lName_second");
+let emailSecond = document.querySelector("#email_second");
+let submitSecond = document.querySelector("#submit_second");
+
+fName.addEventListener("keyup", function () {
+  let text = fName.value;
+  nameRegex(text, fName);
+});
+lname.addEventListener("keyup", function () {
+  let text = lname.value;
+  nameRegex(text, lname);
+});
+
+emailSecond.addEventListener("keyup", function () {
+  let text = emailSecond.value;
+  emailRegex(text, emailSecond);
+});
+
+submitSecond.addEventListener("click", function () {
+  cont = [fName, lname, emailSecond];
+  let checker = false;
+  for (let i = 0; i < cont.length; i++) {
+    if (cont[i].classList.contains("is-valid") == true) {
+      checker = true;
+    } else {
+      checker = false;
+      break;
+    }
+  }
+  if (checker == true) {
+    alert("valid Data");
   }
 });

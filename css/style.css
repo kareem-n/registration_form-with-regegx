@@ -2,7 +2,7 @@ body{
   background-color: rgb(17, 30, 41);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.container{
+#_1st .container{
   background-color: rgb(115, 163, 198);
 }
 #head{
@@ -37,4 +37,40 @@ input::placeholder{
 .btn-theme:hover{
   background-color: #5d57de;
   color: #fff;
+}
+#_2s{
+  background-image: url(../imgs/352a0a667b06267db2f08d375bd83ce8.jpg);
+  background-position: center;
+  background-size: cover;
+}
+#_2s .overlay{
+  background-color: rgba(0, 0, 0, 0.867);
+  height: 100%;
+}
+#_2s .container{
+  background-image: url(../imgs/9d4df0018ab2de736735d8c1fce8b64d.jpg);
+  background-position: center;
+  background-size: cover;
+}
+.container .overlay{
+  height: auto !important;
+  background-color: rgba(77, 77, 77, 0.867) !important;
+}
+.skew{
+  background-color: rgb(65, 65, 255);
+  width: 55%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: -20%;
+  transform: skewX(-15deg);
+}
+#head_title
+{
+  font-size: 400%;
+  letter-spacing: 5px;
+}
+.small{
+  font-size: 12px;
+  color: rgba(250, 235, 215, 0.75);
 }
