@@ -1,76 +1,46 @@
+:root {
+
+  --main-color : rgb(26, 83, 116) ;
+  --main-text-color  : #fff ;
+}
+
 body{
-  background-color: rgb(17, 30, 41);
+  background-color: var(--main-color);
+  color: var(--main-text-color);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-#_1st .container{
-  background-color: rgb(115, 163, 198);
+
+.main-text-color {
+  color: var(--main-color);
 }
-#head{
-  position: relative;
-  padding: 15px 0px;
-  letter-spacing: 10px;
+
+section .container  .row{
+  background-color: rgb(255, 255, 255);
+  color: #000;
+  padding: 4rem 1rem ;
+  overflow: hidden;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
 }
-.h6{
-  line-height: 150%;
+
+input {
+  background-color: rgba(31, 31, 31, 0.103) !important;
 }
-#head::after{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 50%;
-  transform: translatex(-50%);
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.48);
+
+input:focus{
+  background-color: rgba(31, 31, 31, 0.199) !important;
 }
-input{
-  background-color: #e6e6e651 !important;
-  border: none !important;
-}
-input::placeholder{
-  color: #0000007c !important;
-}
-.btn-theme{
-  background-color: #6C63FF ;
+
+form .fas {
+  background-color: gray;
   color: #fff;
 }
-.btn-theme:hover{
-  background-color: #5d57de;
-  color: #fff;
+
+input::placeholder {
+  color: #363636 !important;
+  opacity: 0.6 !important;
 }
-#_2s{
-  background-image: url(../imgs/352a0a667b06267db2f08d375bd83ce8.jpg);
-  background-position: center;
-  background-size: cover;
-}
-#_2s .overlay{
-  background-color: rgba(0, 0, 0, 0.867);
-  height: 100%;
-}
-#_2s .container{
-  background-image: url(../imgs/9d4df0018ab2de736735d8c1fce8b64d.jpg);
-  background-position: center;
-  background-size: cover;
-}
-.container .overlay{
-  height: auto !important;
-  background-color: rgba(77, 77, 77, 0.867) !important;
-}
-.skew{
-  background-color: rgb(65, 65, 255);
-  width: 55%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  right: -20%;
-  transform: skewX(-15deg);
-}
-#head_title
-{
-  font-size: 400%;
-  letter-spacing: 5px;
-}
-.small{
-  font-size: 12px;
-  color: rgba(250, 235, 215, 0.75);
-}
+

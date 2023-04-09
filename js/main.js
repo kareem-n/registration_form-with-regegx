@@ -1,202 +1,75 @@
-let signUp = document.querySelector("#signUp");
-let signIn = document.querySelector("#signIn");
-let signUpBtn = document.querySelector("#signUpBtn");
-let signInBtn = document.querySelector("#signInBtn");
-let signInEmail = document.querySelector("#signInEmail");
-let passIpnut = document.querySelector("#passInput");
-let firstnameInput = document.querySelector("#firstName");
-let email = document.querySelector("#email");
-let pass = document.querySelector("#pass");
-let phoneInput = document.querySelector("#phoneInput");
-let lastnameInput = document.querySelector("#lastName");
-let signupcheck = document.querySelector("#signupCheck");
-let signUpSubmit = document.querySelector("#signUpSubmit");
-let submit = document.querySelector("#submit");
-let message = document.querySelector("#message");
-let agree = document.querySelector("#agree");
+let loginBtn = document.querySelector("#loginBtn");
+let loginForm = document.querySelector("#loginForm");
+let loginInputs = document.querySelectorAll("#loginForm input");
+let alertErrors = document.querySelector("#loginForm #alert");
 
-let submitBtn = document.querySelector("#submit");
-signInBtn.addEventListener("click", function () {
-  signIn.classList.remove("d-none");
-  signUp.classList.add("d-none");
-});
-signUpBtn.addEventListener("click", function () {
-  signIn.classList.add("d-none");
-  signUp.classList.remove("d-none");
-});
+// users import from local storage
 
-function nameRegex(text, input) {
-  let regex = /^[a-zA-Z-]{2,30}( ){0,1}$/;
-  if (regex.test(text) == true) {
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-  } else {
-    input.classList.remove("is-valid");
-    input.classList.add("is-invalid");
-  }
-}
+localStorage.setItem(
+  "users",
+  JSON.stringify([
+    { email: "kareem", password: "123" },
+    { email: "kareemnasser1369@gmail.com", password: "1234" },
+  ])
+);
 
-function emailRegex(text, ele) {
-  let regex = /^.{0,100}@[a-zA-Z]{3,15}\.[a-z]{2,5}$/;
-  if (regex.test(text) == true) {
-    ele.classList.remove("is-invalid");
-    ele.classList.add("is-valid");
-  } else {
-    ele.classList.remove("is-valid");
-    ele.classList.add("is-invalid");
-  }
-}
+// login errors
 
-function passRegex(text) {
-  let regex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (regex.test(text) == true) {
-    pass.classList.remove("is-invalid");
-    pass.classList.add("is-valid");
-  } else {
-    pass.classList.remove("is-valid");
-    pass.classList.add("is-invalid");
-  }
-}
+let errors = [];
 
-function phoneRegex(text) {
-  let regex = /^01[0125][0-9]{8}$/;
-  if (regex.test(text) == true) {
-    phoneInput.classList.remove("is-invalid");
-    phoneInput.classList.add("is-valid");
-  } else {
-    phoneInput.classList.remove("is-valid");
-    phoneInput.classList.add("is-invalid");
-  }
-}
+let users = JSON.parse(localStorage.getItem("users"));
 
-firstnameInput.addEventListener("keyup", function () {
-  let value = firstnameInput.value;
-  nameRegex(value, firstnameInput);
-});
-lastnameInput.addEventListener("keyup", function () {
-  let value = lastnameInput.value;
-  nameRegex(value, lastnameInput);
-});
-
-email.addEventListener("keyup", function () {
-  let text = email.value;
-  emailRegex(text, email);
-});
-
-pass.addEventListener("keyup", function () {
-  let text = pass.value;
-  passRegex(text);
-});
-
-phoneInput.addEventListener("keyup", function () {
-  let text = phoneInput.value;
-  phoneRegex(text);
-});
-let cont = [];
-let users;
-
-if (localStorage.getItem("users") == null) {
-  users = [];
-} else {
-  users = JSON.parse(localStorage.getItem("users"));
-}
-signUpSubmit.addEventListener("click", function () {
-  cont = [firstnameInput, lastnameInput, email, pass, phoneInput];
-  let checker = false;
-  for (let i = 0; i < cont.length; i++) {
-    if (cont[i].classList.contains("is-valid") == true) {
-      checker = true;
-    } else {
-      checker = false;
-      break;
+loginForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  let userEmail = "";
+  let userPassword = "";
+  for (let i = 0; i < loginInputs.length; i++) {
+    if (loginInputs[i].name == "email") {
+      userEmail = loginInputs[i].value;
+    }
+    if (loginInputs[i].name == "password") {
+      userPassword = loginInputs[i].value;
     }
   }
-  if (checker == true && agree.checked == true) {
-    let user = {
-      username: email.value,
-      pass: pass.value,
-    };
-    users.push(user);
-    localStorage.setItem("users", JSON.stringify(users));
-    clearInputs();
 
-    setTimeout(() => {
-      signUp.classList.add("d-none");
-      signIn.classList.remove("d-none");
-    }, 500);
-  }
+  users.forEach((user, i) => {
+    if (user.email === userEmail) {
+      if (user.password === userPassword) {
+        console.log("user found");
+        alertErrors.innerHTML = `log in successfully`;
+        alertErrors.classList.replace("alert-danger", "alert-success");
+        errors = [];
+        return;
+      } else {
+        errors = ["email or password is wrong"];
+      }
+    } else {
+      errors = ["email or password is wrong"];
+    }
+
+    if (users.length - 1 == i) {
+      if (errors.length > 0) {
+        console.log(errors);
+        alertErrors.innerHTML = `${errors[0]}`;
+        alertErrors.classList.add("alert", "alert-danger");
+      }
+    }
+  });
 });
 
-function clearInputs() {
-  firstnameInput.value = "";
-  lastnameInput.value = "";
-  email.value = "";
-  pass.value = "";
-  phoneInput.value = "";
-  agree.checked = false;
-  firstnameInput.classList.remove("is-valid");
-  lastnameInput.classList.remove("is-valid");
-  email.classList.remove("is-valid");
-  pass.classList.remove("is-valid");
-  phoneInput.classList.remove("is-valid");
-  firstnameInput.classList.remove("is-valid");
+const checkInputs = () => {
+  for (let i = 0; i < loginInputs.length; i++) {
+    if (loginInputs[i].value != "") {
+      loginBtn.classList.remove("disabled");
+    } else {
+      loginBtn.classList.add("disabled");
+      return;
+    }
+  }
+};
+
+for (let i = 0; i < loginInputs.length; i++) {
+  loginInputs[i].addEventListener("input", function () {
+    checkInputs();
+  });
 }
-
-submit.addEventListener("click", function () {
-  for (let i = 0; i < users.length; i++) {
-    if (
-      users[i].username == signInEmail.value &&
-      users[i].pass == passIpnut.value
-    ) {
-      message.classList.remove("d-none");
-      message.style.backgroundColor = "aquamarine";
-      message.classList.add("rounded-pill");
-      message.innerHTML = "valid Data entered";
-      console.log(0);
-      break;
-    } else {
-      message.classList.remove("d-none");
-      message.style.backgroundColor = "rgb(255, 167, 167)";
-      message.classList.add("rounded-pill");
-      message.innerHTML = "Invalid Email or password";
-      console.log(1);
-    }
-  }
-});
-//  second form
-
-let fName = document.querySelector("#fName_second");
-let lname = document.querySelector("#lName_second");
-let emailSecond = document.querySelector("#email_second");
-let submitSecond = document.querySelector("#submit_second");
-
-fName.addEventListener("keyup", function () {
-  let text = fName.value;
-  nameRegex(text, fName);
-});
-lname.addEventListener("keyup", function () {
-  let text = lname.value;
-  nameRegex(text, lname);
-});
-
-emailSecond.addEventListener("keyup", function () {
-  let text = emailSecond.value;
-  emailRegex(text, emailSecond);
-});
-
-submitSecond.addEventListener("click", function () {
-  cont = [fName, lname, emailSecond];
-  let checker = false;
-  for (let i = 0; i < cont.length; i++) {
-    if (cont[i].classList.contains("is-valid") == true) {
-      checker = true;
-    } else {
-      checker = false;
-      break;
-    }
-  }
-  if (checker == true) {
-    alert("valid Data");
-  }
-});
